@@ -19,6 +19,9 @@
       true,
       "never"
     ],
+    "no-angle-bracket-type-assertion": [
+      false
+    ],
     "quotemark": [
       false,
       "double"

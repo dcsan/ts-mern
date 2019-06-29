@@ -6,13 +6,9 @@ import Button from "@material-ui/core/Button"
 import { IItem } from "../../types"
 // import { App } from "../../types"
 import Grid from "@material-ui/core/Grid"
-// import Paper from "@material-ui/core/Paper"
 
-import AppBar from "@material-ui/core/AppBar"
-import Toolbar from "@material-ui/core/Toolbar"
-import Typography from "@material-ui/core/Typography"
-import IconButton from "@material-ui/core/IconButton"
-import MenuIcon from "@material-ui/icons/Menu"
+
+import SideMenu from "./components/SideMenu"
 
 export interface AppState {
   email: string
@@ -63,13 +59,13 @@ class App extends React.Component<{}, AppState> {
   }
 
   public render() {
-    const appBar = this.TopNavBar()
+    // const appBar = this.TopNavBar()
     const spacing = 2
     const jsonData = JSON.stringify(this.state.data, null, 2)
     return (
 
       <div className="App">
-        { appBar }
+        <SideMenu />
         <div className="App-header">
           <h1 className="App-title">{ this.state.msg }</h1>
         </div>
@@ -122,6 +118,16 @@ class App extends React.Component<{}, AppState> {
                     onClick={ this.getMeals }
                   >
                     api/meals
+                  </Button>
+
+                  <Button
+                    id="logoutButton"
+                    className="side-button"
+                    disabled={ this.state.isRequesting }
+                    variant="contained"
+                    color="secondary"
+                    onClick={ this.logout }>
+                    Logout
                   </Button>
 
                 </div>
@@ -215,33 +221,6 @@ class App extends React.Component<{}, AppState> {
       this.setState({ isRequesting: false })
     }
 
-  }
-
-  private TopNavBar() {
-
-    return (
-      <div className="root">
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton edge="start" className="menu-button" color="inherit" aria-label="Menu">
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" className="title">
-              TS-MERN
-            </Typography>
-            <Button
-              id="logoutButton"
-              className="side-button"
-              disabled={ this.state.isRequesting }
-              variant="contained"
-              color="secondary"
-              onClick={ this.logout }>
-              Logout
-            </Button>
-          </Toolbar>
-        </AppBar>
-      </div>
-    )
   }
 
   // WIP display as table

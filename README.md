@@ -5,31 +5,38 @@ https://github.com/Fabianopb/create-mern-ts-app/tree/master/template
 
 Typescript MERN stack
 Features:
-- front and back end running
+- frontend and backend in the same project
 - [authentication/login with JWT](#login-and-auth)
-- mongoose
+- [mongoose](#mongoose)
 - [CI with Travis](#travis-ci)
-- seed data
-- prettier on commit
-- tslint
-- testing
+- [.env config](#env-config)
+- [seed data](#seed-data)
+- [prettier](#prettier)
+- [tslint](#tslint)
+- [server tests](#server-tests)
+- [client tests](#client-tests)
 - [Shared Types](#shared-types)
+- [Public API](#public-api)
 - [Material-UI](https://material-ui.com/getting-started/usage/)
 
 ## login and auth
 ![Login page](https://user-images.githubusercontent.com/514002/60385800-812c4200-9a85-11e9-9bee-7128ca6200c6.png)
 
-## loading seed data
+## seed data
 ![Sample data](https://user-images.githubusercontent.com/514002/60385782-580bb180-9a85-11e9-8143-f4ffba04e5a6.png)
 
-data is stored in [backend/data/testData.ts](backend/data/testData.ts)
-it will get reloaded at startup, and there's a button in the UI to force reload too
+A typescript file contains some seed data in [backend/data/testData.ts](backend/data/testData.ts)
+This will get reloaded at startup, and there's a button in the UI to force reload too
 
 
 # Quick Start
+
+## env config
 Add a .env file in your `backend/.env` with app configuration and environemnt variables
 
-See the `backend/.env.example`. this will be .gitignore'd so you can put passwords, dbname etc in here
+See the [backend/.env.example](backend/.env.example).
+
+this will be .gitignore'd so you can put passwords, dbname etc in here
 
 change the variables for security
 
@@ -41,7 +48,7 @@ in top level
 
 client is now running on http://localhost:5555/
 
-this will start client with webpack proxy, and server apps using `concurrently`
+this will start client with webpack proxy, and server apps using [concurrently](https://www.npmjs.com/package/concurrently)
 
 ctrl-C to stop
 
@@ -62,26 +69,38 @@ and the port the webpack server is accessible from
 
 and the server port in [backend/.env](backend/.env)
 
-## linter preferences
+# Details
+
+## mongoose
+Using [Mongoose](https://mongoosejs.com) as the manager for MongoDB.
+You need to create schemas for each model eg like
+[backend/server/items/item.model.ts](backend/server/items/item.model.ts)
+And also an interface to address that model in [types/index.d.ts](types/index.d.ts)
+
+## tslint
 I made some tslint changes to my style
 
     "semicolon": [true, "never"],
-    "quotemark": [true, "single"]
+    "quotemark": [false, "double"]
 
 if you want to change them back you can do this throughout the app:
 
     npx tslint -p tsconfig.json --fix
 
+quotes are a pain, there's much example code out there using single-quotes, so I made it not to be an error, but prettier will change to double quotes before a commit.
+
+## prettier
 prettier is also in the app, as a pre-commit hook.
 you can run this manually from toplevel. this will fix quotes, tabs, newlines etc.
 
     yarn pretty
 
-be careful to change both of these to be the same or the commit hook will change back all your single quotes :D
+be careful to change both `tslint.json` and `.pretterrc` to be use the same or the commit hook will change back all your single quotes :D. In fact maybe we don't need both but prettier is a bit better at handling some types of reformatting.
 
-I recommend turning on 'format on save':
+I recommend turning on 'format on save' in your editor too which I have in [vscode/settings](.vscode/settings.json)
 
 https://github.com/prettier/prettier-vscode#format-on-save
+
 
 ## travis-CI
 Is setup. If you move this repo, you'll have to change the settings and the URL in the below:
@@ -91,14 +110,7 @@ https://travis-ci.com/dcsan/ts-mern/builds
 [![Build Status](https://travis-ci.com/dcsan/ts-mern.svg?token=9w3pxxaLLZ6HFREoEdLa&branch=master)](https://travis-ci.com/dcsan/ts-mern)
 
 
-## server tests
-
-    cd backend
-    yarn test:watch
-
-also `yarn coverage` to see your test coverage
-
-## client testing
+## client tests
 Look at [frontend/src/App.test.tsx](frontend/src/App.test.tsx)
 
 Tests are using enzyme selectors, eg to fake clicking a button with id `#fetchDataButton`
@@ -106,14 +118,23 @@ Tests are using enzyme selectors, eg to fake clicking a button with id `#fetchDa
     wrapper.find("#fetchDataButton").simulate("click")
 
 
-## API without auth
-If you want to expose a public API, or working on some other client without web login, you can use a plain endpoint without auth. there's an example here
+## server tests
+
+    cd backend
+    yarn test:watch
+
+also `yarn coverage` to see your test coverage
+
+
+## Public Api
+If you want to expose a public API without autho or login, or working on some other client without web login like a mini-program, you can use a plain endpoint without auth. there's an example here
 http://localhost:60010/api/meals/ext
 
 ![look-ma-no-auth](https://user-images.githubusercontent.com/514002/60386861-d589ee80-9a92-11e9-8d24-c003205d0ea9.png)
 
-## shared-types
+## Shared types
 There are types in the top level of the app in types/index.ts
+This means they can be shared between client and server.
 
 This is actually a package and there are links in the client to use it:
 
@@ -123,7 +144,9 @@ This is actually a package and there are links in the client to use it:
 
 # Original authors notes
 
-[Read me from here](https://github.com/Fabianopb/create-mern-ts-app/tree/master/template)
+Thanks to [@Fabianopb](https://github.com/Fabianopb) for most of the hard work here!
+
+[README](https://github.com/Fabianopb/create-mern-ts-app/tree/master/template)
 
 This is a starter kit for a fullstack application configured to use [Express](http://expressjs.com/) and [MongoDB](https://www.mongodb.com/) in the backend, and [React](https://reactjs.org/) in the frontend, all written in [TypeScript](https://www.typescriptlang.org/). The backend is built with [webpack](https://webpack.js.org/) (configuration inspired from [here](https://github.com/anthillsolutions/api-skel)), and the frontend was bootstraped with [create-react-app-typescript](https://github.com/wmonk/create-react-app-typescript).
 
