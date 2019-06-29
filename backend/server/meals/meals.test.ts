@@ -12,6 +12,13 @@ const authUser = {
   password: "test"
 }
 
+const mockMeal = {
+  name: "new meal",
+  price: 2000,
+  cname: "test-meal",
+  vegetarian: false
+}
+
 describe("/api/meals tests", () => {
   const mongod = new MongodbMemoryServer()
   let token: string = ""
@@ -44,6 +51,7 @@ describe("/api/meals tests", () => {
     meal.name = "English Breakfast"
     meal.price = 1000
     meal.cname = "english-breakfast"
+    meal.vegetarian = false
     await meal.save()
   })
 
@@ -67,7 +75,7 @@ describe("/api/meals tests", () => {
     const response = await request(app)
       .post("/api/meals")
       .set("Authorization", `Bearer ${ token }`)
-      .send({ name: "new meal", price: 2000, cname: "test-meal" })
+      .send(mockMeal)
     expect(response.status).toBe(200)
     expect(response.body).toBe("meal saved")
   })

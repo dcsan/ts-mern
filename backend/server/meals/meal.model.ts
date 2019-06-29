@@ -18,12 +18,10 @@ const mealSchemaDef: SchemaDef<IMeal> = {
     type: Number,
     required: true,
   },
-
   vegetarian: {
     type: Boolean,
     required: true,
   },
-
   items: {
     required: false,
     type: Array
