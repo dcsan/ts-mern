@@ -16,8 +16,13 @@ Features:
 
 
 ## quick start
-add a .env file in your backend directory with app configuration.
-see the `backend/.env.example`. this will be git ignored so you can put passwords, dbname etc in here
+Add a .env file in your `backend/.env` with app configuration and environemnt variables
+
+See the `backend/.env.example`. this will be git ignored so you can put passwords, dbname etc in here
+
+change these variables for security
+
+    AUTH_SHARED_SECRET=my-auth-shared-secret-hash-here
 
 
 ## running the app
@@ -26,8 +31,15 @@ in top level
     yarn start
 
 client is now running on http://localhost:5555/
+
 this will start client with webpack proxy, and server apps using `concurrently`
+
 ctrl-C to stop
+
+OR you can start client and server separately, using two separate console windows.
+
+    cd frontend; yarn start
+    cd backend; yarn start
 
 ## ports
 the client web proxy needs to match the port set in the backend .env file
@@ -60,15 +72,24 @@ be careful to change both of these to be the same or the commit hook will change
 
 ## travis-CI
 Is setup. If you move this repo, you'll have to change the settings and the URL in the below:
+
 https://travis-ci.com/dcsan/ts-mern/builds
+
 [![Build Status](https://travis-ci.com/dcsan/ts-mern.svg?branch=master)](https://travis-ci.com/dcsan/ts-mern)
 
 
+## client testing
+Look at [frontend/src/App.test.tsx](frontend/src/App.test.tsx)
+
+Tests are using enzyme selectors, eg to fake clicking a button with id `#fetchDataButton`
+
+    wrapper.find("#fetchDataButton").simulate("click")
+
 ----
 
+# Original authors notes
 
-
-[![Build Status](https://travis-ci.com/Fabianopb/express-react-ts-ci.svg?branch=master)](https://travis-ci.com/Fabianopb/express-react-ts-ci)
+[Read me from here](https://github.com/Fabianopb/create-mern-ts-app/tree/master/template)
 
 This is a starter kit for a fullstack application configured to use [Express](http://expressjs.com/) and [MongoDB](https://www.mongodb.com/) in the backend, and [React](https://reactjs.org/) in the frontend, all written in [TypeScript](https://www.typescriptlang.org/). The backend is built with [webpack](https://webpack.js.org/) (configuration inspired from [here](https://github.com/anthillsolutions/api-skel)), and the frontend was bootstraped with [create-react-app-typescript](https://github.com/wmonk/create-react-app-typescript).
 
