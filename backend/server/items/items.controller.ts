@@ -11,10 +11,11 @@ router.route("/reload").get(authorize, async (_, response) => {
   await SeedData.reload({ force: true })
   const items = await Item.find()
   const meals = await Meal.find()
-  return response.status(200).json({
+  const data = {
     items: items.length,
     meals: meals.length
-  })
+  }
+  return response.status(200).json({ data })
 })
 
 router.route("/").get(authorize, async (_, response) => {

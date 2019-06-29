@@ -4,8 +4,8 @@ const testData = {
     // english
     {
       cname: "sausages",
-      name: "Spicy Sausages",
-      calories: 100
+      name: "Extra Spicy Sausages",
+      calories: 150
     },
     {
       cname: "peas",
