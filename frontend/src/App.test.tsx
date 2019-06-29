@@ -29,7 +29,8 @@ it("can handle login", done => {
   const wrapper = shallow<AppState>(<App />)
   wrapper.find("input[placeholder='email']").simulate("change", { target: { value: mockUserCredentials.email } })
   wrapper.find("input[placeholder='password']").simulate("change", { target: { value: mockUserCredentials.password } })
-  wrapper.find("button[children='Log in']").simulate("click")
+  // wrapper.find("button[children='Login']").simulate("click")
+  wrapper.find("#loginButton").simulate("click")
   setImmediate(() => {
     expect(wrapper.state().isLoggedIn).toBe(true)
     done()
@@ -40,7 +41,7 @@ it("can catch login errors", done => {
   mock.onPost("/api/users/login").reply(400)
   const wrapper = shallow<AppState>(<App />)
   wrapper.setState({ email: "user-email", password: "user-password" })
-  wrapper.find("button[children='Log in']").simulate("click")
+  wrapper.find("#loginButton").simulate("click")
   setImmediate(() => {
     expect(wrapper.state().error).toBe("Something went wrong")
     done()
@@ -50,7 +51,8 @@ it("can catch login errors", done => {
 it("can handle logout", () => {
   const wrapper = shallow<AppState>(<App />)
   wrapper.setState({ isLoggedIn: true })
-  wrapper.find("button[children='Log out']").simulate("click")
+  // wrapper.find("button[children='Logout']").simulate("click")
+  wrapper.find("#logoutButton").simulate("click")
   expect(wrapper.state().isLoggedIn).toBe(false)
 })
 
@@ -58,7 +60,8 @@ it("can get data", done => {
   mock.onGet("/api/items").reply(200, mockItemsResponse)
   const wrapper = shallow<AppState>(<App />)
   wrapper.setState({ isLoggedIn: true })
-  wrapper.find("button[children='Get test data']").simulate("click")
+  // wrapper.find("button[children='fetch test data']").simulate("click")
+  wrapper.find("#fetchDataButton").simulate("click")
   setImmediate(() => {
     expect(wrapper.state().data).toEqual(mockItemsResponse)
     done()
@@ -69,7 +72,7 @@ it("can catch data errors", done => {
   mock.onGet("/api/items").reply(400)
   const wrapper = shallow<AppState>(<App />)
   wrapper.setState({ isLoggedIn: true })
-  wrapper.find("button[children='Get test data']").simulate("click")
+  wrapper.find("#fetchDataButton").simulate("click")
   setImmediate(() => {
     expect(wrapper.state().error).toBe("Something went wrong")
     done()

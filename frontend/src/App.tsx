@@ -47,13 +47,12 @@ class App extends React.Component<{}, AppState> {
         />
 
         <Button
+          id="loginButton"
           disabled={ this.state.isRequesting }
           variant="contained"
           color="primary"
           onClick={ this.handleLogin }
-        >
-          Login
-        </Button>
+        >Login</Button>
       </div>
     )
   }
@@ -77,6 +76,7 @@ class App extends React.Component<{}, AppState> {
             </div>
 
             <Button
+              id="reloadButton"
               disabled={ this.state.isRequesting }
               variant="contained"
               color="secondary"
@@ -85,6 +85,7 @@ class App extends React.Component<{}, AppState> {
             </Button>
 
             <Button
+              id="fetchDataButton"
               disabled={ this.state.isRequesting }
               variant="contained"
               color="primary"
@@ -93,13 +94,12 @@ class App extends React.Component<{}, AppState> {
             </Button>
 
             <Button
+              id="logoutButton"
               disabled={ this.state.isRequesting }
               variant="contained"
               color="primary"
               onClick={ this.logout }
-            >
-              Logout
-            </Button>
+            >Logout</Button>
           </div>
         ) : (
             this.loginBox()
