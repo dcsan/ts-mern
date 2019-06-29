@@ -7,7 +7,7 @@ import fs = require("fs")
 import Logger from "./utils/Logger"
 const logger = new Logger("app")
 
-import errorHandler = require("errorHandler")
+import errorHandler = require("errorhandler")
 
 
 // Put dotenv in use before importing controllers
