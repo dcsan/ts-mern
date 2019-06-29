@@ -1,15 +1,17 @@
 import axios from "axios"
 import React from "react"
 import "./App.css"
-import logo from "./logo.svg"
 import { isSessionValid, setSession, clearSession, getAuthHeaders } from "./session"
+import Button from "@material-ui/core/Button"
+// import App from "../../types/index"
+import { IItem } from "../../types/AppTypes"
 
 export interface AppState {
   email: string
   password: string
   isRequesting: boolean
   isLoggedIn: boolean
-  data: App.Item[]
+  data: IItem[]
   error: string
 }
 
@@ -27,58 +29,81 @@ class App extends React.Component<{}, AppState> {
     this.setState({ isLoggedIn: isSessionValid() })
   }
 
+  public loginBox() {
+    return (
+      <div className="App-login">
+        (try the credentials: test/test)
+        <input
+          disabled={ this.state.isRequesting }
+          placeholder="email"
+          type="text"
+          onChange={ (e: React.ChangeEvent<HTMLInputElement>) => this.setState({ email: e.target.value }) }
+        />
+        <input
+          disabled={ this.state.isRequesting }
+          placeholder="password"
+          type="password"
+          onChange={ (e: React.ChangeEvent<HTMLInputElement>) => this.setState({ password: e.target.value }) }
+        />
+
+        <Button
+          disabled={ this.state.isRequesting }
+          variant="contained"
+          color="primary"
+          onClick={ this.handleLogin }
+        >
+          Login
+        </Button>
+      </div>
+    )
+  }
+
   public render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Welcome to TS-Mern app</h1>
         </header>
-        <div className="App-error">{this.state.error}</div>
-        {this.state.isLoggedIn ? (
+        <div className="App-error">{ this.state.error }</div>
+        { this.state.isLoggedIn ? (
           <div className="App-private">
-            <div>
-              Server test data:
-              <ul>
-                {this.state.data.map((item: App.Item, index) => (
-                  <li key={index}>
-                    name: {item.name} / value: {item.value}
-                  </li>
-                ))}
-              </ul>
+            <div className="item-list">
+              Server seed data:
+                { this.state.data.map((item: IItem, index) => (
+                  <div key={ index }>
+                    name: { item.name } / value: { item.value }
+                  </div>
+                )) }
             </div>
-            <button disabled={this.state.isRequesting} onClick={this.getTestData}>
-              Get test data
-            </button>
 
-            <button disabled={this.state.isRequesting} onClick={this.reloadTestData}>
-              Reload test data
-            </button>
+            <Button
+              disabled={ this.state.isRequesting }
+              variant="contained"
+              color="secondary"
+              onClick={ this.reloadTestData }>
+              reloadTestData
+            </Button>
 
-            <button disabled={this.state.isRequesting} onClick={this.logout}>
-              Log out
-            </button>
+            <Button
+              disabled={ this.state.isRequesting }
+              variant="contained"
+              color="primary"
+              onClick={ this.fetchTestData }>
+              fetch test data
+            </Button>
+
+            <Button
+              disabled={ this.state.isRequesting }
+              variant="contained"
+              color="primary"
+              onClick={ this.logout }
+            >
+              Logout
+            </Button>
           </div>
         ) : (
-          <div className="App-login">
-            (try the credentials: test/test)
-            <input
-              disabled={this.state.isRequesting}
-              placeholder="email"
-              type="text"
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({ email: e.target.value })}
-            />
-            <input
-              disabled={this.state.isRequesting}
-              placeholder="password"
-              type="password"
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({ password: e.target.value })}
-            />
-            <button disabled={this.state.isRequesting} onClick={this.handleLogin}>
-              Log in
-            </button>
-          </div>
-        )}
+            this.loginBox()
+          ) }
       </div>
     )
   }
@@ -104,10 +129,11 @@ class App extends React.Component<{}, AppState> {
     this.setState({ isLoggedIn: false })
   }
 
-  private getTestData = async (): Promise<void> => {
+  private fetchTestData = async (): Promise<void> => {
     try {
       this.setState({ error: "" })
-      const response = await axios.get<App.Item[]>("/api/items", { headers: getAuthHeaders() })
+      const response = await axios.get<IItem[]>("/api/items", { headers: getAuthHeaders() })
+      console.log("fetched=>", response.data)
       this.setState({ data: response.data })
     } catch (error) {
       this.setState({ error: "Something went wrong" })
@@ -119,7 +145,7 @@ class App extends React.Component<{}, AppState> {
   private reloadTestData = async (): Promise<void> => {
     try {
       this.setState({ error: "" })
-      const response = await axios.get<App.Item[]>("/api/items/reload", { headers: getAuthHeaders() })
+      const response = await axios.get<IItem[]>("/api/items/reload", { headers: getAuthHeaders() })
       this.setState({ data: response.data })
     } catch (error) {
       this.setState({ error: "Something went wrong" })
