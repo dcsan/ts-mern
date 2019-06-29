@@ -9,7 +9,7 @@
     "arrow-parens": false,
     "jsx-no-lambda": false,
     "semicolon": [true, "never"],
-    "quotemark": [true, "single"],
+    "quotemark": [true, "double"],
     "indent": [true, "spaces", 2]
   }
 }

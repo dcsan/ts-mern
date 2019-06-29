@@ -1,24 +1,45 @@
-# Express-React-TypeScript
+# TypeScript-Mongo-Express-React-Node
+
 based on
 https://github.com/Fabianopb/create-mern-ts-app/tree/master/template
 
-## configuration
-add a .env file in your backend directory with app configuration
-see the .env.example
-this will be git ignored
+Typescript MERN stack
+Features:
+- mongoose
+- front and back end running
+- CI
+- authentication/login with JWT
+- seed data
+- prettier on commit
+- tslint
+- testing
 
-## port
-the client web proxy needs to match the port set in the backend:
 
-  "proxy": "http://localhost:60010"
+## quick start
+add a .env file in your backend directory with app configuration.
+see the `backend/.env.example`. this will be git ignored so you can put passwords, dbname etc in here
+
 
 ## running the app
 in top level
 
     yarn start
 
-this will start client and server apps using `concurrently`
+client is now running on http://localhost:5555/
+this will start client with webpack proxy, and server apps using `concurrently`
+ctrl-C to stop
 
+## ports
+the client web proxy needs to match the port set in the backend .env file
+you can change the proxy target port in [frontend/package.json](frontend/package.json)
+
+    "proxy": "http://localhost:60010"
+
+and the port the webpack server is accessible from
+
+    "start": "PORT=5555 react-scripts start"
+
+and the server port in [backend/.env](backend/.env)
 
 ## linter preferences
 I made some tslint changes to my style
@@ -33,9 +54,9 @@ if you want to change them back you can do this throughout the app:
 prettier is also in the app, as a pre-commit hook.
 you can run this manually from toplevel. this will fix quotes, tabs, newlines etc.
 
-  yarn pretty
+    yarn pretty
 
-
+be careful to change both of these to be the same or the commit hook will change back all your single quotes :D
 
 
 ----
@@ -165,5 +186,4 @@ const MyFuncComponent: React.SFC<MyComponentProps> = ({ name, callback }) => (
 Just as a footnote it's very desirable to share types between your API and your frontend so both can _talk in the same language_. This could be achieved, for example, by creating a local `@type` module in the root that could be directly linked to each project via [yarn's link](https://yarnpkg.com/lang/en/docs/cli/link/).
 
 ## License
-
 MIT

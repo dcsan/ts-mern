@@ -1,16 +1,16 @@
-import axios from "axios";
-import React from "react";
-import "./App.css";
-import logo from "./logo.svg";
-import { isSessionValid, setSession, clearSession, getAuthHeaders } from "./session";
+import axios from "axios"
+import React from "react"
+import "./App.css"
+import logo from "./logo.svg"
+import { isSessionValid, setSession, clearSession, getAuthHeaders } from "./session"
 
 export interface AppState {
-  email: string;
-  password: string;
-  isRequesting: boolean;
-  isLoggedIn: boolean;
-  data: App.Item[];
-  error: string;
+  email: string
+  password: string
+  isRequesting: boolean
+  isLoggedIn: boolean
+  data: App.Item[]
+  error: string
 }
 
 class App extends React.Component<{}, AppState> {
@@ -21,10 +21,10 @@ class App extends React.Component<{}, AppState> {
     isLoggedIn: false,
     data: [],
     error: "",
-  };
+  }
 
   public componentDidMount() {
-    this.setState({ isLoggedIn: isSessionValid() });
+    this.setState({ isLoggedIn: isSessionValid() })
   }
 
   public render() {
@@ -80,53 +80,53 @@ class App extends React.Component<{}, AppState> {
           </div>
         )}
       </div>
-    );
+    )
   }
 
   private handleLogin = async (): Promise<void> => {
-    const { email, password } = this.state;
+    const { email, password } = this.state
     try {
-      this.setState({ error: "" });
-      this.setState({ isRequesting: true });
-      const response = await axios.post<{ token: string; expiry: string }>("/api/users/login", { email, password });
-      const { token, expiry } = response.data;
-      setSession(token, expiry);
-      this.setState({ isLoggedIn: true });
+      this.setState({ error: "" })
+      this.setState({ isRequesting: true })
+      const response = await axios.post<{ token: string; expiry: string }>("/api/users/login", { email, password })
+      const { token, expiry } = response.data
+      setSession(token, expiry)
+      this.setState({ isLoggedIn: true })
     } catch (error) {
-      this.setState({ error: "Something went wrong" });
+      this.setState({ error: "Something went wrong" })
     } finally {
-      this.setState({ isRequesting: false });
+      this.setState({ isRequesting: false })
     }
-  };
+  }
 
   private logout = (): void => {
-    clearSession();
-    this.setState({ isLoggedIn: false });
-  };
+    clearSession()
+    this.setState({ isLoggedIn: false })
+  }
 
   private getTestData = async (): Promise<void> => {
     try {
-      this.setState({ error: "" });
-      const response = await axios.get<App.Item[]>("/api/items", { headers: getAuthHeaders() });
-      this.setState({ data: response.data });
+      this.setState({ error: "" })
+      const response = await axios.get<App.Item[]>("/api/items", { headers: getAuthHeaders() })
+      this.setState({ data: response.data })
     } catch (error) {
-      this.setState({ error: "Something went wrong" });
+      this.setState({ error: "Something went wrong" })
     } finally {
-      this.setState({ isRequesting: false });
+      this.setState({ isRequesting: false })
     }
-  };
+  }
 
   private reloadTestData = async (): Promise<void> => {
     try {
-      this.setState({ error: "" });
-      const response = await axios.get<App.Item[]>("/api/items/reload", { headers: getAuthHeaders() });
-      this.setState({ data: response.data });
+      this.setState({ error: "" })
+      const response = await axios.get<App.Item[]>("/api/items/reload", { headers: getAuthHeaders() })
+      this.setState({ data: response.data })
     } catch (error) {
-      this.setState({ error: "Something went wrong" });
+      this.setState({ error: "Something went wrong" })
     } finally {
-      this.setState({ isRequesting: false });
+      this.setState({ isRequesting: false })
     }
-  };
+  }
 }
 
-export default App;
+export default App

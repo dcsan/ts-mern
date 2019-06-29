@@ -45,8 +45,8 @@
     "test:backend": "cd backend && yarn test",
     "test:frontend": "cd frontend && yarn test",
     "serve": "cd backend && node build/server.js",
-    "pretty:frontend": "yarn prettier --write --config .prettierrc frontend/src/**/*ts",
-    "pretty:backend": "yarn prettier --write --config .prettierrc backend/**/*ts",
+    "pretty:frontend": "yarn prettier --write --config .prettierrc frontend/src/**/*.ts*",
+    "pretty:backend": "yarn prettier --write --config .prettierrc backend/**/*.ts*",
     "pretty": "yarn pretty:frontend && yarn pretty:backend"
   }
 }
