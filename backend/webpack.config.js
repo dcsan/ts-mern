@@ -16,9 +16,9 @@ module.exports = {
   externals: nodeModules,
 
   // needed to fix https://github.com/webpack/webpack/issues/1599
-  node: {
-    __dirname: true
-  },
+  // node: {
+  //   __dirname: true
+  // },
 
   module: {
     loaders: [
