@@ -7,7 +7,7 @@ Typescript MERN stack
 Features:
 - mongoose
 - front and back end running
-- [CI with Travis](ts-mern#travis-ci)
+- [CI with Travis](#travis-ci)
 - authentication/login with JWT
 - seed data
 - prettier on commit
