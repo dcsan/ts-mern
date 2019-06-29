@@ -5,10 +5,10 @@ https://github.com/Fabianopb/create-mern-ts-app/tree/master/template
 
 Typescript MERN stack
 Features:
-- mongoose
 - front and back end running
+- [authentication/login with JWT](#login-and-auth)
+- mongoose
 - [CI with Travis](#travis-ci)
-- authentication/login with JWT
 - seed data
 - prettier on commit
 - tslint
@@ -18,10 +18,11 @@ Features:
 ## login and auth
 ![Login page](https://user-images.githubusercontent.com/514002/60385800-812c4200-9a85-11e9-9bee-7128ca6200c6.png)
 
-## loading sample data
+## loading seed data
 ![Sample data](https://user-images.githubusercontent.com/514002/60385782-580bb180-9a85-11e9-8143-f4ffba04e5a6.png)
 
 data is stored in [backend/data/testData.ts](backend/data/testData.ts)
+it will get reloaded at startup, and there's a button in the UI to force reload too
 
 # Quick Start
 Add a .env file in your `backend/.env` with app configuration and environemnt variables
@@ -89,10 +90,11 @@ https://travis-ci.com/dcsan/ts-mern/builds
 
 
 ## server tests
-cd backend
 
+    cd backend
     yarn test:watch
 
+also `yarn coverage` to see your test coverage
 
 ## client testing
 Look at [frontend/src/App.test.tsx](frontend/src/App.test.tsx)

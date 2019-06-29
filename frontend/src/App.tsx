@@ -100,18 +100,7 @@ class App extends React.Component<{}, AppState> {
                     onClick={ this.reloadTestData }
                   >
                     reload
-                </Button>
-
-                  <Button
-                    id="fetchDataButton"
-                    className="side-button"
-                    disabled={ this.state.isRequesting }
-                    variant="outlined"
-                    color="primary"
-                    onClick={ this.fetchTestData }
-                  >
-                    fetch
-                </Button>
+                  </Button>
 
                   <Button
                     id="fetchDataButton"
@@ -122,7 +111,7 @@ class App extends React.Component<{}, AppState> {
                     onClick={ this.getItems }
                   >
                     api/items
-                </Button>
+                  </Button>
 
                   <Button
                     id="fetchDataButton"
@@ -133,7 +122,7 @@ class App extends React.Component<{}, AppState> {
                     onClick={ this.getMeals }
                   >
                     api/meals
-                </Button>
+                  </Button>
 
                 </div>
 
@@ -257,15 +246,12 @@ class App extends React.Component<{}, AppState> {
 
   // WIP display as table
   private dataTable() {
-    {
-      /*
-      { this.state.data.map((item: IItem, index) => (
-        <div key={ index }>
+    this.state.data.map((item: IItem, index) => (
+      <div key={ index }>
         <span className="col col-1">{ item.calories }</span>
         <span className="col col-6">{ item.name }</span>
-        </div>
-      */
-    }
+      </div>
+    ))
   }
 
 }

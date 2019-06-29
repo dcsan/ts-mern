@@ -20,12 +20,6 @@ router.route("/ext").get(async (_, response) => {
   return response.status(200).json(items)
 })
 
-router.route("/reload").get(authorize, async (_, response) => {
-  await SeedData.reload({ force: true })
-  const items = await Meal.find()
-  return response.status(200).json(items)
-})
-
 router.route("/").get(authorize, async (_, response) => {
   const items = await Meal.find()
   return response.status(200).json(items)

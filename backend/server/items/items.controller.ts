@@ -2,6 +2,7 @@ import * as bodyParser from "body-parser"
 import * as express from "express"
 import { authorize } from "../config"
 import Item from "./item.model"
+import Meal from "../meals/meal.model"
 import SeedData from "../../scripts/SeedData"
 
 const router = express.Router()
@@ -9,7 +10,11 @@ const router = express.Router()
 router.route("/reload").get(authorize, async (_, response) => {
   await SeedData.reload({ force: true })
   const items = await Item.find()
-  return response.status(200).json(items)
+  const meals = await Meal.find()
+  return response.status(200).json({
+    items: items.length,
+    meals: meals.length
+  })
 })
 
 router.route("/").get(authorize, async (_, response) => {
