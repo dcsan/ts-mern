@@ -15,12 +15,14 @@
 
 
 export interface IItem {
-  name: string
   cname: string,
+  name: string
   calories?: number
 }
 
 export interface IMeal {
+  cname: string,
   name: string
-  price: number
+  price: number,
+  items: string[]
 }

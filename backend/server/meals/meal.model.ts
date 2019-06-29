@@ -6,6 +6,10 @@ import { SchemaDef } from "../../types" // from mongoose package
 interface MealDoc extends IMeal, Document { }
 
 const itemSchemaDef: SchemaDef<IMeal> = {
+  cname: {
+    type: String,
+    required: true,
+  },
   name: {
     type: String,
     required: true,
@@ -14,6 +18,10 @@ const itemSchemaDef: SchemaDef<IMeal> = {
     type: Number,
     required: true,
   },
+  items: {
+    required: false,
+    type: Array
+  }
 }
 
 // Define model schema

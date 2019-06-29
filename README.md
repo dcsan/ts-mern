@@ -88,6 +88,11 @@ https://travis-ci.com/dcsan/ts-mern/builds
 [![Build Status](https://travis-ci.com/dcsan/ts-mern.svg?token=9w3pxxaLLZ6HFREoEdLa&branch=master)](https://travis-ci.com/dcsan/ts-mern)
 
 
+## server tests
+cd backend
+
+    yarn test:watch
+
 
 ## client testing
 Look at [frontend/src/App.test.tsx](frontend/src/App.test.tsx)

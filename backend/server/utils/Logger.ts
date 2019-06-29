@@ -19,9 +19,12 @@ class Logger {
   public info(...args: any) {
     console.log(chalk.grey(this.whereFrom(), ...args))
   }
+  public log(...args: any) {
+    console.log(chalk.grey(this.whereFrom(), ...args))
+  }
 
   private whereFrom() {
-    return `[${this.where}]\t`
+    return `[${ this.where }]\t`
   }
 }
 

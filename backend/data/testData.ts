@@ -46,7 +46,8 @@ const testData = {
 
   meals: [
     {
-      name: "English",
+      name: "English Breakfast",
+      cname: "english-breakfast",
       price: 10,
       items: [
         "eggs", "peas", "sausages"
@@ -55,6 +56,7 @@ const testData = {
 
     {
       name: "Japanese",
+      cname: "japanese",
       price: 20,
       items: [
         "sushi", "miso-soup", "white-rice"
@@ -63,6 +65,7 @@ const testData = {
 
     {
       name: "Chinese",
+      cname: "chinese",
       price: 20,
       items: [
         "white-rice", "chicken-feet"
