@@ -20,6 +20,7 @@ export interface AppState {
   isRequesting: boolean
   isLoggedIn: boolean
   data: IItem[]
+  msg: string
   error: string
 }
 
@@ -31,6 +32,7 @@ class App extends React.Component<{}, AppState> {
     isLoggedIn: false,
     data: [],
     error: "",
+    msg: "ready"
   }
 
   public componentDidMount() {
@@ -63,12 +65,13 @@ class App extends React.Component<{}, AppState> {
   public render() {
     const appBar = this.TopNavBar()
     const spacing = 2
+    const jsonData = JSON.stringify(this.state.data, null, 2)
     return (
 
       <div className="App">
         { appBar }
         <div className="App-header">
-          <h1 className="App-title">Welcome to TS-Mern app</h1>
+          <h1 className="App-title">{ this.state.msg }</h1>
         </div>
         <div className="App-error">{ this.state.error }</div>
 
@@ -109,20 +112,37 @@ class App extends React.Component<{}, AppState> {
                   >
                     fetch
                 </Button>
+
+                  <Button
+                    id="fetchDataButton"
+                    className="side-button"
+                    disabled={ this.state.isRequesting }
+                    variant="outlined"
+                    color="primary"
+                    onClick={ this.getItems }
+                  >
+                    api/items
+                </Button>
+
+                  <Button
+                    id="fetchDataButton"
+                    className="side-button"
+                    disabled={ this.state.isRequesting }
+                    variant="outlined"
+                    color="primary"
+                    onClick={ this.getMeals }
+                  >
+                    api/meals
+                </Button>
+
                 </div>
 
               </Grid>
 
               {/* output */ }
               <Grid item={ true } xs={ 9 }>
-                <h3>Server seed data:</h3>
-                <div className="debug-data">
-                  { this.state.data.map((item: IItem, index) => (
-                    <div key={ index }>
-                      <span className="col col-1">{ item.calories }</span>
-                      <span className="col col-6">{ item.name }</span>
-                    </div>
-                  )) }
+                <div className="code">
+                  { jsonData }
                 </div>
               </Grid>
             </Grid>
@@ -183,6 +203,31 @@ class App extends React.Component<{}, AppState> {
     }
   }
 
+  private getMeals = async (): Promise<void> => {
+    this.testApi("Meals", "/api/meals")
+  }
+
+  private getItems = async (): Promise<void> => {
+    this.testApi("Items", "/api/items")
+  }
+
+  private testApi = async (name: string, uri: string): Promise<void> => {
+    try {
+      this.setState({ error: "" })
+      const response = await axios.get<IItem[]>(uri, { headers: getAuthHeaders() })
+      this.setState({
+        msg: name,
+        data: response.data
+      })
+      console.log("fetched=>", response.data)
+    } catch (error) {
+      this.setState({ error: "Something went wrong" })
+    } finally {
+      this.setState({ isRequesting: false })
+    }
+
+  }
+
   private TopNavBar() {
 
     return (
@@ -208,6 +253,19 @@ class App extends React.Component<{}, AppState> {
         </AppBar>
       </div>
     )
+  }
+
+  // WIP display as table
+  private dataTable() {
+    {
+      /*
+      { this.state.data.map((item: IItem, index) => (
+        <div key={ index }>
+        <span className="col col-1">{ item.calories }</span>
+        <span className="col col-6">{ item.name }</span>
+        </div>
+      */
+    }
   }
 
 }

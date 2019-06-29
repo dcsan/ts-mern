@@ -41,8 +41,9 @@ describe("/api/meals tests", () => {
   // Create a sample meal
   beforeEach(async () => {
     const meal = new Meal()
-    meal.name = "English"
+    meal.name = "English Breakfast"
     meal.price = 1000
+    meal.cname = "english-breakfast"
     await meal.save()
   })
 
@@ -57,9 +58,8 @@ describe("/api/meals tests", () => {
       .set("Authorization", `Bearer ${ token }`)
     expect(response.status).toBe(200)
     expect(response.body).toEqual([expect.objectContaining({
-      name: "meal name",
       price: 1000,
-      cname: "test-meal"
+      cname: "english-breakfast"
     })])
   })
 

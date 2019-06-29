@@ -72,13 +72,21 @@ input, button {
   width: 100px;
 }
 
-.debug-data {
+.code {
+  text-align: left;
+  display: block;
+  unicode-bidi: embed;
+  font-family: monospace;
+  white-space: pre;
+}
+
+/* .debug-data {
   font-family: 'Courier New', Courier, monospace;
-  size: 12px;
+  size: 9px;
   border: 1px solid grey;
   text-align: left;
   padding: 2px;
-}
+} */
 
 .col {
   display: inline-block;
