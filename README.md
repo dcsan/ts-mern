@@ -75,7 +75,8 @@ Is setup. If you move this repo, you'll have to change the settings and the URL 
 
 https://travis-ci.com/dcsan/ts-mern/builds
 
-[![Build Status](https://travis-ci.com/dcsan/ts-mern.svg?branch=master)](https://travis-ci.com/dcsan/ts-mern)
+[![Build Status](https://travis-ci.com/dcsan/ts-mern.svg?token=9w3pxxaLLZ6HFREoEdLa&branch=master)](https://travis-ci.com/dcsan/ts-mern)
+
 
 
 ## client testing

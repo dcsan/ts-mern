@@ -6,6 +6,13 @@ import Button from "@material-ui/core/Button"
 // import App from "../../types/index"
 import { IItem } from "../../types/AppTypes"
 
+import { makeStyles } from "@material-ui/core/styles"
+import AppBar from "@material-ui/core/AppBar"
+import Toolbar from "@material-ui/core/Toolbar"
+import Typography from "@material-ui/core/Typography"
+import IconButton from "@material-ui/core/IconButton"
+import MenuIcon from "@material-ui/icons/Menu"
+
 export interface AppState {
   email: string
   password: string
@@ -53,8 +60,11 @@ class App extends React.Component<{}, AppState> {
   }
 
   public render() {
+    const appBar = this.ButtonAppBar()
     return (
+
       <div className="App">
+        { appBar }
         <header className="App-header">
           <h1 className="App-title">Welcome to TS-Mern app</h1>
         </header>
@@ -146,6 +156,26 @@ class App extends React.Component<{}, AppState> {
       this.setState({ isRequesting: false })
     }
   }
+
+  private ButtonAppBar() {
+
+    return (
+      <div className="root">
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton edge="start" className="menu-button" color="inherit" aria-label="Menu">
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" className="title">
+              TS-MERN
+            </Typography>
+            <Button color="inherit">stuff</Button>
+          </Toolbar>
+        </AppBar>
+      </div>
+    )
+  }
+
 }
 
 export default App

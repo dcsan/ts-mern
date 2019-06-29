@@ -50,3 +50,15 @@ input, button {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+
+
+.root {
+  flex-grow: 1;
+}
+.menu-button {
+  margin-right: 2;
+}
+.title {
+  flex-grow: 1;
+}
