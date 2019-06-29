@@ -69,7 +69,7 @@ describe("/api/meals tests", () => {
       .set("Authorization", `Bearer ${ token }`)
       .send({ name: "new meal", price: 2000, cname: "test-meal" })
     expect(response.status).toBe(200)
-    expect(response.body).toBe("Meal saved!")
+    expect(response.body).toBe("meal saved")
   })
 
   it("should catch errors when posting items", async () => {
