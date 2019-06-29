@@ -7,7 +7,7 @@ Typescript MERN stack
 Features:
 - mongoose
 - front and back end running
-- CI
+- [CI with Travis](ts-mern#travis-ci)
 - authentication/login with JWT
 - seed data
 - prettier on commit
@@ -16,10 +16,10 @@ Features:
 - [Material-UI](https://material-ui.com/getting-started/usage/)
 
 ## login and auth
-[![Login page]](https://user-images.githubusercontent.com/514002/60385800-812c4200-9a85-11e9-9bee-7128ca6200c6.png)
+![Login page](https://user-images.githubusercontent.com/514002/60385800-812c4200-9a85-11e9-9bee-7128ca6200c6.png)
 
 ## loading sample data
-[![Sample data]](https://user-images.githubusercontent.com/514002/60385782-580bb180-9a85-11e9-8143-f4ffba04e5a6.png)
+![Sample data](https://user-images.githubusercontent.com/514002/60385782-580bb180-9a85-11e9-8143-f4ffba04e5a6.png)
 
 data is stored in [backend/data/testData.ts](backend/data/testData.ts)
 
