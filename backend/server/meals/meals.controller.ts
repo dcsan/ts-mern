@@ -35,7 +35,7 @@ router.route("/").post(authorize, bodyParser.json(), async (request, response) =
   try {
     const item = new Meal(request.body)
     await item.save()
-    return response.status(200).json("Meal saved!")
+    return response.status(200).json("meal saved")
   } catch (error) {
     return response.status(400).send(error)
   }

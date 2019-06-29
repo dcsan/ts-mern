@@ -54,7 +54,7 @@ describe("/api/meals tests", () => {
 
   it("should get items", async () => {
     const response = await request(app)
-      .get("/api/items")
+      .get("/api/meals")
       .set("Authorization", `Bearer ${ token }`)
     expect(response.status).toBe(200)
     expect(response.body).toEqual([expect.objectContaining({
@@ -65,7 +65,7 @@ describe("/api/meals tests", () => {
 
   it("should post items", async () => {
     const response = await request(app)
-      .post("/api/items")
+      .post("/api/meals")
       .set("Authorization", `Bearer ${ token }`)
       .send({ name: "new meal", price: 2000, cname: "test-meal" })
     expect(response.status).toBe(200)
@@ -74,7 +74,7 @@ describe("/api/meals tests", () => {
 
   it("should catch errors when posting items", async () => {
     const response = await request(app)
-      .post("/api/items")
+      .post("/api/meals")
       .set("Authorization", `Bearer ${ token }`)
       .send({})
     expect(response.status).toBe(400)
