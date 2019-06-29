@@ -15,15 +15,20 @@ Features:
 - testing
 - [Material-UI](https://material-ui.com/getting-started/usage/)
 
+## login and auth
+[![Login page]](https://user-images.githubusercontent.com/514002/60385800-812c4200-9a85-11e9-9bee-7128ca6200c6.png)
 
-## quick start
+## loading sample data
+[![Sample data]](https://user-images.githubusercontent.com/514002/60385782-580bb180-9a85-11e9-8143-f4ffba04e5a6.png)
+
+data is stored in [backend/data/testData.ts](backend/data/testData.ts)
+
+# Quick Start
 Add a .env file in your `backend/.env` with app configuration and environemnt variables
 
-See the `backend/.env.example`. this will be git ignored so you can put passwords, dbname etc in here
+See the `backend/.env.example`. this will be .gitignore'd so you can put passwords, dbname etc in here
 
-change these variables for security
-
-    AUTH_SHARED_SECRET=my-auth-shared-secret-hash-here
+change the variables for security
 
 
 ## running the app
