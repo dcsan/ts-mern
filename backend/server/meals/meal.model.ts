@@ -2,20 +2,20 @@ import { Document, model, Schema } from "mongoose"
 import { SchemaDef } from "../../types"
 
 // Declare model interface
-interface ItemDoc extends App.Item, Document { }
+interface MealDoc extends App.Meal, Document { }
 
-const itemSchemaDef: SchemaDef<App.Item> = {
+const itemSchemaDef: SchemaDef<App.Meal> = {
   name: {
     type: String,
     required: true,
   },
-  calories: {
+  price: {
     type: Number,
-    required: false,
+    required: true,
   },
 }
 
 // Define model schema
 const itemSchema = new Schema(itemSchemaDef)
 
-export default model<ItemDoc>("Item", itemSchema)
+export default model<MealDoc>("Meal", itemSchema)

@@ -1,14 +1,69 @@
 const testData = {
   items: [
-    { name: "Sausages", value: 0.1 },
-    { name: "Peas", value: 1.2 },
-    { name: "Eggs", value: 2.5 },
 
-    { name: "Sushi", value: 0.5 },
-    { name: "Miso soup", value: 5.1 },
+    // english
+    {
+      cname: "sausages",
+      name: "Spicy Sausages",
+    },
+    {
+      cname: "peas",
+      name: "Mushy Peas"
+    },
+    {
+      cname: "eggs",
+      name: "Fried Eggs"
+    },
 
-    { name: "White rice", value: 0.5 },
+    // japanese
+    {
+      name: "Sushi",
+      cname: "sushi"
+    },
+    {
+      name: "Miso soup",
+      cname: "miso-soup"
+    },
+
+    // chinese
+    {
+      name: "White rice",
+      cname: "white-rice"
+    },
+    {
+      name: "Delicious Chicken Feet",
+      cname: "chicken-feet"
+    },
+
   ],
+
+  meals: [
+    {
+      name: "English",
+      price: 10,
+      items: [
+        "eggs", "peas", "sausages"
+      ]
+    },
+
+    {
+      name: "Japanese",
+      price: 20,
+      items: [
+        "sushi", "miso-soup", "white-rice"
+      ]
+    },
+
+    {
+      name: "Chinese",
+      price: 20,
+      items: [
+        "white-rice", "chicken-feet"
+      ]
+    },
+
+  ],
+
 }
 
 export default testData

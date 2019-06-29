@@ -1,5 +1,6 @@
-import chalk from "chalk"
+
 import Item from "../server/items/item.model"
+import Meal from "../server/meals/meal.model"
 import User from "../server/users/user.model"
 import Logger from "../server/utils/Logger"
 const logger = new Logger("SeedData")
@@ -7,24 +8,31 @@ const logger = new Logger("SeedData")
 import testData from "../data/testData"
 
 const SeedData = {
-  async reload({ force = false }) {
-    if (force) {
-      logger.info("remove test data")
-      await Item.remove({})
-    }
-    logger.info("reload")
+  async loadOne(model: any, data: any) {
     try {
-      const items = await Item.find({})
+      const items = await model.find({})
       if (items.length !== 0) {
         logger.warn("Database already initiated, skipping populating script")
       } else {
         logger.info("No items in the database creating sample data...")
-        await Item.insertMany(testData.items)
-        logger.info(`${testData.items.length} item(s) successfuly created!`)
+        await model.insertMany(data)
+        logger.info(`${ data.length } item(s) successfuly created!`)
       }
     } catch (error) {
       logger.error(error)
     }
+  },
+
+  async reload({ force = false }) {
+    force = true
+    if (force) {
+      logger.info("remove test data")
+      await Item.remove({})
+      await Meal.remove({})
+    }
+    await SeedData.loadOne(Item, testData.items)
+    await SeedData.loadOne(Meal, testData.meals)
+    logger.info("reload")
   },
 
   async addSuperUser() {

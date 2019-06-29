@@ -54,7 +54,7 @@ input, button {
 
 
 .root {
-  flex-grow: 1;
+  /* flex-grow: 0; */
 }
 .menu-button {
   margin-right: 2;

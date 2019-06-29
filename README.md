@@ -13,6 +13,7 @@ Features:
 - prettier on commit
 - tslint
 - testing
+- [Material-UI](https://material-ui.com/getting-started/usage/)
 
 
 ## quick start
@@ -70,6 +71,10 @@ you can run this manually from toplevel. this will fix quotes, tabs, newlines et
 
 be careful to change both of these to be the same or the commit hook will change back all your single quotes :D
 
+I recommend turning on 'format on save':
+
+https://github.com/prettier/prettier-vscode#format-on-save
+
 ## travis-CI
 Is setup. If you move this repo, you'll have to change the settings and the URL in the below:
 
@@ -85,6 +90,8 @@ Look at [frontend/src/App.test.tsx](frontend/src/App.test.tsx)
 Tests are using enzyme selectors, eg to fake clicking a button with id `#fetchDataButton`
 
     wrapper.find("#fetchDataButton").simulate("click")
+
+
 
 ----
 

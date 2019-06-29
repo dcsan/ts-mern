@@ -3,6 +3,11 @@
 declare module App {
   interface Item {
     name: string
-    value: number
+    calories?: number
+  }
+
+  interface Meal {
+    name: string
+    price: number
   }
 }
