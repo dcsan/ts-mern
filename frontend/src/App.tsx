@@ -3,22 +3,12 @@ import React from "react"
 import "./App.css"
 import { isSessionValid, setSession, clearSession, getAuthHeaders } from "./session"
 import Button from "@material-ui/core/Button"
-import { IItem } from "../../types"
+import { IItem, AppState } from "../../types"
 // import { App } from "../../types"
 import Grid from "@material-ui/core/Grid"
 
+import SideMenu from "./components/SideMenu/SideMenu"
 
-import SideMenu from "./components/SideMenu"
-
-export interface AppState {
-  email: string
-  password: string
-  isRequesting: boolean
-  isLoggedIn: boolean
-  data: IItem[]
-  msg: string
-  error: string
-}
 
 class App extends React.Component<{}, AppState> {
   public state = {
@@ -29,6 +19,11 @@ class App extends React.Component<{}, AppState> {
     data: [],
     error: "",
     msg: "ready"
+  }
+
+  constructor(props: any) {
+    super(props)
+    this.handleLogout = this.handleLogout.bind(this)
   }
 
   public componentDidMount() {
@@ -65,7 +60,7 @@ class App extends React.Component<{}, AppState> {
     return (
 
       <div className="App">
-        <SideMenu />
+        <SideMenu handleLogout={ this.handleLogout }/>
         <div className="App-header">
           <h1 className="App-title">{ this.state.msg }</h1>
         </div>
@@ -120,16 +115,6 @@ class App extends React.Component<{}, AppState> {
                     api/meals
                   </Button>
 
-                  <Button
-                    id="logoutButton"
-                    className="side-button"
-                    disabled={ this.state.isRequesting }
-                    variant="contained"
-                    color="secondary"
-                    onClick={ this.logout }>
-                    Logout
-                  </Button>
-
                 </div>
 
               </Grid>
@@ -167,22 +152,10 @@ class App extends React.Component<{}, AppState> {
     }
   }
 
-  private logout = (): void => {
+  // TODO - call parent
+  private handleLogout() {
     clearSession()
     this.setState({ isLoggedIn: false })
-  }
-
-  private fetchTestData = async (): Promise<void> => {
-    try {
-      this.setState({ error: "" })
-      const response = await axios.get<IItem[]>("/api/items", { headers: getAuthHeaders() })
-      this.setState({ data: response.data })
-      console.log("fetched=>", response.data)
-    } catch (error) {
-      this.setState({ error: "Something went wrong" })
-    } finally {
-      this.setState({ isRequesting: false })
-    }
   }
 
   private reloadTestData = async (): Promise<void> => {

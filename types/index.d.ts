@@ -14,3 +14,13 @@ export interface IMeal {
   vegetarian: boolean,
   items: string[]
 }
+
+export interface AppState {
+  email: string
+  password: string
+  isRequesting: boolean
+  isLoggedIn: boolean
+  data: IItem[]
+  msg: string
+  error: string
+}
