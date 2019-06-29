@@ -5,6 +5,7 @@ services:
   - mongodb
 env:
   - AUTH_SHARED_SECRET=auth-shared-secret
+  - travis=true
 script:
   - yarn lint
   - yarn test

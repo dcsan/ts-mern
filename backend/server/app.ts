@@ -20,9 +20,11 @@ import usersController from "./users/users.controller"
 
 // Create the express application
 const app = express()
-const accessFile = path.join(__dirname, "./logs/access.log") // needs webpack config
-const accessLogStream = fs.createWriteStream(accessFile, { flags: "a" })
-app.use(morgan("combined", { stream: accessLogStream }))
+
+//// TODO access logs are a problem on travis CI
+// const accessFile = path.join(__dirname, "./logs/access.log") // needs webpack config
+// const accessLogStream = fs.createWriteStream(accessFile, { flags: "a" })
+// app.use(morgan("combined", { stream: accessLogStream }))
 app.use(morgan('dev', {
   // filter >200 responses
   // skip(req, res) { return false } // return res.statusCode < 150 }
