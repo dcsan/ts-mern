@@ -2,6 +2,15 @@
   "name": "express-backend",
   "version": "0.1.0",
   "main": "./build/server.js",
+
+  "scripts": {
+    "start": "webpack --watch",
+    "build": "webpack --config webpack.config.js",
+    "lint": "tslint --fix -c ../tslint.json -p ./tsconfig.json",
+    "test": "jest --coverage --colors",
+    "test:watch": "jest --coverage --colors --watchAll"
+  },
+
   "engines": {
     "node": "8.* || >= 10.*",
     "yarn": ">=1.*"
@@ -62,12 +71,6 @@
     "tslint": "^5.11.0",
     "typescript": "^3.1.6",
     "webpack": "^3.9.1"
-  },
-  "scripts": {
-    "start": "webpack --watch",
-    "build": "webpack --config webpack.config.js",
-    "lint": "tslint -c ../tslint.json -p ./tsconfig.json",
-    "test": "jest --coverage --colors",
-    "test:watch": "jest --coverage --colors --watchAll"
   }
+
 }
