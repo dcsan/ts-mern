@@ -51,7 +51,8 @@ const testData = {
       price: 10,
       items: [
         "eggs", "peas", "sausages"
-      ]
+      ],
+      vegetarian: false
     },
 
     {
@@ -60,7 +61,8 @@ const testData = {
       price: 20,
       items: [
         "sushi", "miso-soup", "white-rice"
-      ]
+      ],
+      vegetarian: true
     },
 
     {
@@ -69,7 +71,8 @@ const testData = {
       price: 20,
       items: [
         "white-rice", "chicken-feet"
-      ]
+      ],
+      vegetarian: false
     },
 
   ],
