@@ -4,16 +4,21 @@ const NodemonPlugin = require("nodemon-webpack-plugin");
 
 const nodeModules = {};
 fs.readdirSync("node_modules")
-  .filter(function(x) {
+  .filter(function (x) {
     return [".bin"].indexOf(x) === -1;
   })
-  .forEach(function(mod) {
+  .forEach(function (mod) {
     nodeModules[mod] = "commonjs " + mod;
   });
 
 module.exports = {
   entry: "./server/server.ts",
   externals: nodeModules,
+
+  // needed to fix https://github.com/webpack/webpack/issues/1599
+  node: {
+    __dirname: true
+  },
 
   module: {
     loaders: [
