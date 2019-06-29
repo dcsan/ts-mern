@@ -13,6 +13,7 @@ Features:
 - prettier on commit
 - tslint
 - testing
+- [Shared Types](#shared-types)
 - [Material-UI](https://material-ui.com/getting-started/usage/)
 
 ## login and auth
@@ -23,6 +24,7 @@ Features:
 
 data is stored in [backend/data/testData.ts](backend/data/testData.ts)
 it will get reloaded at startup, and there's a button in the UI to force reload too
+
 
 # Quick Start
 Add a .env file in your `backend/.env` with app configuration and environemnt variables
@@ -103,8 +105,17 @@ Tests are using enzyme selectors, eg to fake clicking a button with id `#fetchDa
 
     wrapper.find("#fetchDataButton").simulate("click")
 
-## types
-in client are setup
+
+## API without auth
+If you want to expose a public API, or working on some other client without web login, you can use a plain endpoint without auth. there's an example here
+http://localhost:60010/api/meals/ext
+
+![look-ma-no-auth](https://user-images.githubusercontent.com/514002/60386861-d589ee80-9a92-11e9-8d24-c003205d0ea9.png)
+
+## shared-types
+There are types in the top level of the app in types/index.ts
+
+This is actually a package and there are links in the client to use it:
 
     "@types/app-shared-types": "link:../types",
 
