@@ -8,10 +8,10 @@
 }
 
 .App-header {
-  background-color: #222;
+  background-color: #eee;
   /* height: 150px; */
-  padding: 20px;
-  color: white;
+  /* padding: 20px; */
+  color: grey;
 }
 
 .App-title {
@@ -21,8 +21,8 @@
 .App-private {
   margin: 8px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  /* flex-direction: column; */
+  /* align-items: center; */
 }
 
 .App-login {
@@ -34,7 +34,7 @@
 
 input, button {
   margin: 8px;
-  width: 300px;
+  /* width: 300px; */
 }
 
 .App-error {
@@ -53,12 +53,46 @@ input, button {
 
 
 
-.root {
-  /* flex-grow: 0; */
-}
+/* .root {
+  flex-grow: 0;
+} */
 .menu-button {
+  border: 1px solid red;
   margin-right: 2;
 }
 .title {
   flex-grow: 1;
 }
+.left-bar {
+  width: 100px;
+  /* border: 1px solid red; */
+}
+
+.side-button {
+  width: 100px;
+}
+
+.debug-data {
+  font-family: 'Courier New', Courier, monospace;
+  size: 12px;
+  border: 1px solid grey;
+  text-align: left;
+  padding: 2px;
+}
+
+.col {
+  display: inline-block;
+  border-right: 1px solid grey;
+  margin-right: 5px;
+}
+
+.col-1 {
+  width: 10%;
+}
+.col-3 {
+  width: 30%;
+}
+.col-6 {
+  width: 60%;
+}
+

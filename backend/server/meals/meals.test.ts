@@ -34,7 +34,7 @@ describe("/api/items tests", () => {
   beforeEach(async () => {
     const item = new Item()
     item.name = "item name"
-    item.value = 1000
+    item.price = 1000
     await item.save()
   })
 
@@ -46,7 +46,7 @@ describe("/api/items tests", () => {
   it("should get items", async () => {
     const response = await request(app)
       .get("/api/items")
-      .set("Authorization", `Bearer ${token}`)
+      .set("Authorization", `Bearer ${ token }`)
     expect(response.status).toBe(200)
     expect(response.body).toEqual([expect.objectContaining({ name: "item name", value: 1000 })])
   })
@@ -54,7 +54,7 @@ describe("/api/items tests", () => {
   it("should post items", async () => {
     const response = await request(app)
       .post("/api/items")
-      .set("Authorization", `Bearer ${token}`)
+      .set("Authorization", `Bearer ${ token }`)
       .send({ name: "new item", value: 2000 })
     expect(response.status).toBe(200)
     expect(response.body).toBe("Item saved!")
@@ -63,7 +63,7 @@ describe("/api/items tests", () => {
   it("should catch errors when posting items", async () => {
     const response = await request(app)
       .post("/api/items")
-      .set("Authorization", `Bearer ${token}`)
+      .set("Authorization", `Bearer ${ token }`)
       .send({})
     expect(response.status).toBe(400)
   })

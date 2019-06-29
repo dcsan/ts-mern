@@ -1,10 +1,11 @@
 import { Document, model, Schema } from "mongoose"
-import { SchemaDef } from "../../types"
+import { IMeal } from "../../../types"
+import { SchemaDef } from "../../types" // from mongoose package
 
 // Declare model interface
-interface MealDoc extends App.Meal, Document { }
+interface MealDoc extends IMeal, Document { }
 
-const itemSchemaDef: SchemaDef<App.Meal> = {
+const itemSchemaDef: SchemaDef<IMeal> = {
   name: {
     type: String,
     required: true,

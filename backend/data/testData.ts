@@ -5,34 +5,41 @@ const testData = {
     {
       cname: "sausages",
       name: "Spicy Sausages",
+      calories: 100
     },
     {
       cname: "peas",
-      name: "Mushy Peas"
+      name: "Mushy Peas",
+      calories: 50
     },
     {
       cname: "eggs",
-      name: "Fried Eggs"
+      name: "Fried Eggs",
+      calories: 120
     },
 
     // japanese
     {
       name: "Sushi",
-      cname: "sushi"
+      cname: "sushi",
+      calories: 50
     },
     {
       name: "Miso soup",
-      cname: "miso-soup"
+      cname: "miso-soup",
+      calories: 30
     },
 
     // chinese
     {
       name: "White rice",
-      cname: "white-rice"
+      cname: "white-rice",
+      calories: 50
     },
     {
       name: "Delicious Chicken Feet",
-      cname: "chicken-feet"
+      cname: "chicken-feet",
+      calories: 500
     },
 
   ],

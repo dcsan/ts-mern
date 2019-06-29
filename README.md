@@ -91,7 +91,10 @@ Tests are using enzyme selectors, eg to fake clicking a button with id `#fetchDa
 
     wrapper.find("#fetchDataButton").simulate("click")
 
+## types
+in client are setup
 
+    "@types/app-shared-types": "link:../types",
 
 ----
 

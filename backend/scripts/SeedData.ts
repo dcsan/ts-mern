@@ -8,15 +8,16 @@ const logger = new Logger("SeedData")
 import testData from "../data/testData"
 
 const SeedData = {
-  async loadOne(model: any, data: any) {
+  async loadOne(model: any, data: any, name: string) {
     try {
       const items = await model.find({})
       if (items.length !== 0) {
-        logger.warn("Database already initiated, skipping populating script")
+        logger.warn(`Data already initialized for ${ name }, skipping populating script`)
       } else {
         logger.info("No items in the database creating sample data...")
         await model.insertMany(data)
-        logger.info(`${ data.length } item(s) successfuly created!`)
+        logger.info(`[${ name }] ${ data.length } item(s) successfuly created!`)
+        console.log(data)
       }
     } catch (error) {
       logger.error(error)
@@ -30,8 +31,8 @@ const SeedData = {
       await Item.remove({})
       await Meal.remove({})
     }
-    await SeedData.loadOne(Item, testData.items)
-    await SeedData.loadOne(Meal, testData.meals)
+    await SeedData.loadOne(Item, testData.items, "Item")
+    await SeedData.loadOne(Meal, testData.meals, "Meal")
     logger.info("reload")
   },
 

@@ -3,8 +3,10 @@ import React from "react"
 import "./App.css"
 import { isSessionValid, setSession, clearSession, getAuthHeaders } from "./session"
 import Button from "@material-ui/core/Button"
-// import App from "../../types/index"
-import { IItem } from "../../types/AppTypes"
+import { IItem } from "../../types"
+// import { App } from "../../types"
+import Grid from "@material-ui/core/Grid"
+// import Paper from "@material-ui/core/Paper"
 
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
@@ -40,18 +42,18 @@ class App extends React.Component<{}, AppState> {
       <div className="App-login">
         (try the credentials: test/test)
         <input
-          disabled={this.state.isRequesting}
+          disabled={ this.state.isRequesting }
           placeholder="email"
           type="text"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({ email: e.target.value })}
+          onChange={ (e: React.ChangeEvent<HTMLInputElement>) => this.setState({ email: e.target.value }) }
         />
         <input
-          disabled={this.state.isRequesting}
+          disabled={ this.state.isRequesting }
           placeholder="password"
           type="password"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({ password: e.target.value })}
+          onChange={ (e: React.ChangeEvent<HTMLInputElement>) => this.setState({ password: e.target.value }) }
         />
-        <Button id="loginButton" disabled={this.state.isRequesting} variant="contained" color="primary" onClick={this.handleLogin}>
+        <Button id="loginButton" disabled={ this.state.isRequesting } variant="contained" color="primary" onClick={ this.handleLogin }>
           Login
         </Button>
       </div>
@@ -59,53 +61,77 @@ class App extends React.Component<{}, AppState> {
   }
 
   public render() {
-    const appBar = this.ButtonAppBar()
+    const appBar = this.TopNavBar()
+    const spacing = 2
     return (
 
       <div className="App">
         { appBar }
-        <header className="App-header">
+        <div className="App-header">
           <h1 className="App-title">Welcome to TS-Mern app</h1>
-        </header>
-        <div className="App-error">{this.state.error}</div>
-        {this.state.isLoggedIn ? (
+        </div>
+        <div className="App-error">{ this.state.error }</div>
+
+        { this.state.isLoggedIn ? (
           <div className="App-private">
-            <div className="item-list">
-              Server seed data:
-              {this.state.data.map((item: IItem, index) => (
-                <div key={index}>
-                  name: {item.name} / value: {item.value}
+            <Grid
+              container={ true }
+              className="root"
+              spacing={ spacing }
+              justify="flex-start"
+              alignItems="flex-start"
+            >
+              <Grid
+                item={ true }
+                xs={ 3 }
+              >
+                <div className="left-bar">
+
+                  <Button
+                    size="small"
+                    className="side-button"
+                    variant="outlined"
+                    id="reloadButton"
+                    disabled={ this.state.isRequesting }
+                    color="secondary"
+                    onClick={ this.reloadTestData }
+                  >
+                    reload
+                </Button>
+
+                  <Button
+                    id="fetchDataButton"
+                    className="side-button"
+                    disabled={ this.state.isRequesting }
+                    variant="outlined"
+                    color="primary"
+                    onClick={ this.fetchTestData }
+                  >
+                    fetch
+                </Button>
                 </div>
-              ))}
-            </div>
 
-            <Button
-              id="reloadButton"
-              disabled={this.state.isRequesting}
-              variant="contained"
-              color="secondary"
-              onClick={this.reloadTestData}
-            >
-              reloadTestData
-            </Button>
+              </Grid>
 
-            <Button
-              id="fetchDataButton"
-              disabled={this.state.isRequesting}
-              variant="contained"
-              color="primary"
-              onClick={this.fetchTestData}
-            >
-              fetch test data
-            </Button>
+              {/* output */ }
+              <Grid item={ true } xs={ 9 }>
+                <h3>Server seed data:</h3>
+                <div className="debug-data">
+                  { this.state.data.map((item: IItem, index) => (
+                    <div key={ index }>
+                      <span className="col col-1">{ item.calories }</span>
+                      <span className="col col-6">{ item.name }</span>
+                    </div>
+                  )) }
+                </div>
+              </Grid>
+            </Grid>
 
-            <Button id="logoutButton" disabled={this.state.isRequesting} variant="contained" color="primary" onClick={this.logout}>
-              Logout
-            </Button>
+
           </div>
         ) : (
-          this.loginBox()
-        )}
+            this.loginBox()
+          ) }
       </div>
     )
   }
@@ -135,8 +161,8 @@ class App extends React.Component<{}, AppState> {
     try {
       this.setState({ error: "" })
       const response = await axios.get<IItem[]>("/api/items", { headers: getAuthHeaders() })
-      console.log("fetched=>", response.data)
       this.setState({ data: response.data })
+      console.log("fetched=>", response.data)
     } catch (error) {
       this.setState({ error: "Something went wrong" })
     } finally {
@@ -149,6 +175,7 @@ class App extends React.Component<{}, AppState> {
       this.setState({ error: "" })
       const response = await axios.get<IItem[]>("/api/items/reload", { headers: getAuthHeaders() })
       this.setState({ data: response.data })
+      console.log("fetched=>", response.data)
     } catch (error) {
       this.setState({ error: "Something went wrong" })
     } finally {
@@ -156,7 +183,7 @@ class App extends React.Component<{}, AppState> {
     }
   }
 
-  private ButtonAppBar() {
+  private TopNavBar() {
 
     return (
       <div className="root">
@@ -168,7 +195,15 @@ class App extends React.Component<{}, AppState> {
             <Typography variant="h6" className="title">
               TS-MERN
             </Typography>
-            <Button color="inherit">stuff</Button>
+            <Button
+              id="logoutButton"
+              className="side-button"
+              disabled={ this.state.isRequesting }
+              variant="contained"
+              color="secondary"
+              onClick={ this.logout }>
+              Logout
+            </Button>
           </Toolbar>
         </AppBar>
       </div>
