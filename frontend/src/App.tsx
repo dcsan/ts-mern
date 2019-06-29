@@ -34,25 +34,20 @@ class App extends React.Component<{}, AppState> {
       <div className="App-login">
         (try the credentials: test/test)
         <input
-          disabled={ this.state.isRequesting }
+          disabled={this.state.isRequesting}
           placeholder="email"
           type="text"
-          onChange={ (e: React.ChangeEvent<HTMLInputElement>) => this.setState({ email: e.target.value }) }
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({ email: e.target.value })}
         />
         <input
-          disabled={ this.state.isRequesting }
+          disabled={this.state.isRequesting}
           placeholder="password"
           type="password"
-          onChange={ (e: React.ChangeEvent<HTMLInputElement>) => this.setState({ password: e.target.value }) }
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({ password: e.target.value })}
         />
-
-        <Button
-          id="loginButton"
-          disabled={ this.state.isRequesting }
-          variant="contained"
-          color="primary"
-          onClick={ this.handleLogin }
-        >Login</Button>
+        <Button id="loginButton" disabled={this.state.isRequesting} variant="contained" color="primary" onClick={this.handleLogin}>
+          Login
+        </Button>
       </div>
     )
   }
@@ -63,47 +58,45 @@ class App extends React.Component<{}, AppState> {
         <header className="App-header">
           <h1 className="App-title">Welcome to TS-Mern app</h1>
         </header>
-        <div className="App-error">{ this.state.error }</div>
-        { this.state.isLoggedIn ? (
+        <div className="App-error">{this.state.error}</div>
+        {this.state.isLoggedIn ? (
           <div className="App-private">
             <div className="item-list">
               Server seed data:
-                { this.state.data.map((item: IItem, index) => (
-                  <div key={ index }>
-                    name: { item.name } / value: { item.value }
-                  </div>
-                )) }
+              {this.state.data.map((item: IItem, index) => (
+                <div key={index}>
+                  name: {item.name} / value: {item.value}
+                </div>
+              ))}
             </div>
 
             <Button
               id="reloadButton"
-              disabled={ this.state.isRequesting }
+              disabled={this.state.isRequesting}
               variant="contained"
               color="secondary"
-              onClick={ this.reloadTestData }>
+              onClick={this.reloadTestData}
+            >
               reloadTestData
             </Button>
 
             <Button
               id="fetchDataButton"
-              disabled={ this.state.isRequesting }
+              disabled={this.state.isRequesting}
               variant="contained"
               color="primary"
-              onClick={ this.fetchTestData }>
+              onClick={this.fetchTestData}
+            >
               fetch test data
             </Button>
 
-            <Button
-              id="logoutButton"
-              disabled={ this.state.isRequesting }
-              variant="contained"
-              color="primary"
-              onClick={ this.logout }
-            >Logout</Button>
+            <Button id="logoutButton" disabled={this.state.isRequesting} variant="contained" color="primary" onClick={this.logout}>
+              Logout
+            </Button>
           </div>
         ) : (
-            this.loginBox()
-          ) }
+          this.loginBox()
+        )}
       </div>
     )
   }

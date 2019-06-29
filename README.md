@@ -58,6 +58,11 @@ you can run this manually from toplevel. this will fix quotes, tabs, newlines et
 
 be careful to change both of these to be the same or the commit hook will change back all your single quotes :D
 
+## travis-CI
+Is setup. If you move this repo, you'll have to change the settings and the URL in the below:
+https://travis-ci.com/dcsan/ts-mern/builds
+[![Build Status](https://travis-ci.com/dcsan/ts-mern.svg?branch=master)](https://travis-ci.com/dcsan/ts-mern)
+
 
 ----
 

@@ -1,6 +1,5 @@
 const testData = {
   items: [
-
     { name: "Sausages", value: 0.1 },
     { name: "Peas", value: 1.2 },
     { name: "Eggs", value: 2.5 },
@@ -9,7 +8,6 @@ const testData = {
     { name: "Miso soup", value: 5.1 },
 
     { name: "White rice", value: 0.5 },
-
   ],
 }
 
