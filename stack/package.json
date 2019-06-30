@@ -42,7 +42,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn test"
+      "post-commit": "export TESTING=1; cd backend; yarn test"
     }
   },
   "lint-staged": {

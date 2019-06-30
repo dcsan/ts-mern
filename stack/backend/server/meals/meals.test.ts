@@ -35,7 +35,7 @@ describe("/api/meals tests", () => {
       .post("/api/users/login")
       .send(authUser)
     token = response.body.token
-    logger.log("login token", token)
+    // logger.log("login token", token)
   })
 
   // Remove test user, disconnect and stop database

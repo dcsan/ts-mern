@@ -5,20 +5,21 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
-
 import Label from '@material-ui/icons/Label'
-
-import './SideMenu.css'
-
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import Typography from "@material-ui/core/Typography"
 import IconButton from "@material-ui/core/IconButton"
 import MenuIcon from "@material-ui/icons/Menu"
 
-// import { AppState } from "../../../../types"
+import './SideMenu.css'
 
-const MenuItems = ['Home', 'Data', 'Chat', 'Import']
+import { Link } from 'react-router-dom'
+
+// app parts
+import { SideMenuProps } from "../../../../types/sharedTypes"
+
+const MenuItems = ['Home', 'Data', 'Chat', 'Info']
 const AppName = 'TS MERN'
 
 type DrawerSide = 'top' | 'left' | 'bottom' | 'right'
@@ -59,11 +60,12 @@ class SideMenu extends React.Component<SideMenuProps, {} > {
       >
         <List>
           { MenuItems.map((text, index) => (
-            <ListItem button={ true } key={ text }>
-              <ListItemIcon><Label /></ListItemIcon>
-
-              <ListItemText primary={ text } />
+            <Link to={ text } key={ text }>
+              <ListItem button={ true } >
+                <ListItemIcon><Label /></ListItemIcon>
+                <ListItemText primary={ text } />
             </ListItem>
+            </Link>
           )) }
         </List>
       </div>
@@ -86,11 +88,12 @@ class SideMenu extends React.Component<SideMenuProps, {} > {
 
   public topBar() {
     return (
-      <div className="root">
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className="menu-button" color="inherit" aria-label="Menu">
-            <MenuIcon onClick={ this.toggleDrawer('left', true) } />
+          <IconButton
+            onClick={ this.toggleDrawer('left', true) }
+            edge="start" className="menu-button" color="inherit" aria-label="Menu">
+          <MenuIcon />
           </IconButton>
           <Typography variant="h6" className="title">
             { AppName }
@@ -98,7 +101,6 @@ class SideMenu extends React.Component<SideMenuProps, {} > {
             { this.logoutButton() }
         </Toolbar>
       </AppBar>
-    </div>
     )
   }
 

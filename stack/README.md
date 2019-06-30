@@ -18,6 +18,7 @@ Features:
 - [Shared Types](#shared-types)
 - [Public API](#public-api)
 - [Material-UI](https://material-ui.com/getting-started/usage/)
+- [React Router Dom](https://www.npmjs.com/package/react-router-dom)
 
 ## login and auth
 ![Login page](https://user-images.githubusercontent.com/514002/60385800-812c4200-9a85-11e9-9bee-7128ca6200c6.png)
@@ -32,13 +33,27 @@ This will get reloaded at startup, and there's a button in the UI to force reloa
 # Quick Start
 
 ## env config
-Add a .env file in your `backend/.env` with app configuration and environemnt variables
+Add a .env file in your `backend/.env` with app configuration and environment variables
 
-See the [backend/.env.example](backend/.env.example).
+See the [backend/.env.example](backend/.env.example)
 
-this will be .gitignore'd so you can put passwords, dbname etc in here
+This will be .gitignore'd so you can put passwords, dbname etc in here
+Change the variables for security before deploying to production
 
-change the variables for security
+    AUTH_SHARED_SECRET=auth-shared-secret
+    MONGODB_URI=mongodb://127.0.0.1:27017/tsmerndemo
+    PORT=60010
+    SUPERUSER=test
+    SUPERPASS=test
+
+notes:
+- mongoDB database name is last part of the URI, eg `tsmerndemo`
+- SUPERUSER/SUPERPASS is the login for the first user
+- PORT is where the server /api runs
+If you change the PORT here you also need to change it in [frontend/package.json]
+That is the port that the webpack proxy is connecting to the backend server on.
+
+    "proxy": "http://localhost:60010",
 
 
 ## running the app

@@ -6,7 +6,9 @@ const logger = new Logger("server")
 
 const mongoUri = process.env.MONGODB_URI || "mongodb://localhost:27017/test_database"
 const port = process.env.PORT || 9000
-;(async () => {
+logger.info('mongoUri', mongoUri)
+
+async function start() {
   // Connect to the database
   await mongoose.connect(mongoUri, { useNewUrlParser: true })
   logger.info("connected to ", mongoUri)
@@ -16,5 +18,7 @@ const port = process.env.PORT || 9000
   await SeedData.addSuperUser()
   // Start express App
   app.listen(port)
-  console.log(`server listening on port: ${port}`)
-})()
+  console.log(`server listening on port: ${ port }`)
+}
+
+start()

@@ -1,14 +1,32 @@
 import axios from "axios"
 import React from "react"
-import "./App.css"
-import { isSessionValid, setSession, clearSession, getAuthHeaders } from "./session"
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { isSessionValid, setSession, clearSession } from "./session"
 import Button from "@material-ui/core/Button"
-// import { IItem, AppState } from "../../types"
-// import { App } from "../../types"
-import Grid from "@material-ui/core/Grid"
-
 import SideMenu from "./components/SideMenu/SideMenu"
 
+import { AppState } from "../../types/sharedTypes"
+
+import DataView from "./components/DataView/DataView"
+
+import "./App.css"
+
+
+const Home = () => (
+  <div className='block'>
+    Home
+  </div>
+)
+
+const Info = () => (
+  <div className='block'>
+    Info
+  </div>
+)
+
+const dataView = () => {
+  return(<DataView />)
+}
 
 class App extends React.Component<{}, AppState> {
   public state = {
@@ -55,85 +73,21 @@ class App extends React.Component<{}, AppState> {
 
   public render() {
     // const appBar = this.TopNavBar()
-    const spacing = 2
-    const jsonData = JSON.stringify(this.state.data, null, 2)
-    return (
-
-      <div className="App">
-        <SideMenu handleLogout={ this.handleLogout }/>
-        <div className="App-header">
-          <h1 className="App-title">{ this.state.msg }</h1>
-        </div>
-        <div className="App-error">{ this.state.error }</div>
-
-        { this.state.isLoggedIn ? (
-          <div className="App-private">
-            <Grid
-              container={ true }
-              className="root"
-              spacing={ spacing }
-              justify="flex-start"
-              alignItems="flex-start"
-            >
-              <Grid
-                item={ true }
-                xs={ 3 }
-              >
-                <div className="left-bar">
-
-                  <Button
-                    size="small"
-                    className="side-button"
-                    variant="outlined"
-                    id="reloadButton"
-                    disabled={ this.state.isRequesting }
-                    color="secondary"
-                    onClick={ this.reloadTestData }
-                  >
-                    reload
-                  </Button>
-
-                  <Button
-                    id="fetchDataButton"
-                    className="side-button"
-                    disabled={ this.state.isRequesting }
-                    variant="outlined"
-                    color="primary"
-                    onClick={ this.getItems }
-                  >
-                    api/items
-                  </Button>
-
-                  <Button
-                    id="fetchDataButton"
-                    className="side-button"
-                    disabled={ this.state.isRequesting }
-                    variant="outlined"
-                    color="primary"
-                    onClick={ this.getMeals }
-                  >
-                    api/meals
-                  </Button>
-
-                </div>
-
-              </Grid>
-
-              {/* output */ }
-              <Grid item={ true } xs={ 9 }>
-                <div className="code">
-                  { jsonData }
-                </div>
-              </Grid>
-            </Grid>
-
-
-          </div>
-        ) : (
-            this.loginBox()
-          ) }
-      </div>
-    )
+    // const dataView = <DataView />
+    const mainApp = <div className="App">
+      <Router>
+        <SideMenu handleLogout={ this.handleLogout } />
+        <Route exact={true} path="/" component={ Home } />
+        <Route exact={true} path="/home" component={ Home } />
+        <Route exact={true} path="/info" component={ Info } />
+        <Route exact={true} path="/data" component={ dataView } />
+      </Router>
+    </div>
+    if (this.state.isLoggedIn) {
+      return mainApp
+    } else {
+      return this.loginBox()
+    }
   }
 
   private handleLogin = async (): Promise<void> => {
@@ -152,59 +106,21 @@ class App extends React.Component<{}, AppState> {
     }
   }
 
-  // TODO - call parent
+  // TODO - handle in child?
   private handleLogout() {
     clearSession()
     this.setState({ isLoggedIn: false })
   }
 
-  private reloadTestData = async (): Promise<void> => {
-    try {
-      this.setState({ error: "" })
-      const response = await axios.get<IItem[]>("/api/items/reload", { headers: getAuthHeaders() })
-      this.setState({ data: response.data })
-      console.log("fetched=>", response.data)
-    } catch (error) {
-      this.setState({ error: "Something went wrong" })
-    } finally {
-      this.setState({ isRequesting: false })
-    }
-  }
-
-  private getMeals = async (): Promise<void> => {
-    this.testApi("Meals", "/api/meals")
-  }
-
-  private getItems = async (): Promise<void> => {
-    this.testApi("Items", "/api/items")
-  }
-
-  private testApi = async (name: string, uri: string): Promise<void> => {
-    try {
-      this.setState({ error: "" })
-      const response = await axios.get<IItem[]>(uri, { headers: getAuthHeaders() })
-      this.setState({
-        msg: name,
-        data: response.data
-      })
-      console.log("fetched=>", response.data)
-    } catch (error) {
-      this.setState({ error: "Something went wrong" })
-    } finally {
-      this.setState({ isRequesting: false })
-    }
-
-  }
-
   // WIP display as table
-  private dataTable() {
-    this.state.data.map((item: IItem, index) => (
-      <div key={ index }>
-        <span className="col col-1">{ item.calories }</span>
-        <span className="col col-6">{ item.name }</span>
-      </div>
-    ))
-  }
+  // private dataTable() {
+  //   this.state.data.map((item: IItem, index) => (
+  //     <div key={ index }>
+  //       <span className="col col-1">{ item.calories }</span>
+  //       <span className="col col-6">{ item.name }</span>
+  //     </div>
+  //   ))
+  // }
 
 }
 
