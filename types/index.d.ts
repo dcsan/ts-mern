@@ -1,13 +1,16 @@
-// // types shared between front and backend
-// deprecated
+// types shared between front and backend
 
-export interface IItem {
+// these are part of devDependecices for each project using a link:
+// "@types/app-shared-types": "link:../types",
+// so there is no need to explicitly import them
+
+interface IItem {
   cname: string,
   name: string
   calories?: number
 }
 
-export interface IMeal {
+interface IMeal {
   cname: string,
   name: string
   price: number,
@@ -15,7 +18,7 @@ export interface IMeal {
   items: string[]
 }
 
-export interface AppState {
+interface AppState {
   email: string
   password: string
   isRequesting: boolean
@@ -23,4 +26,10 @@ export interface AppState {
   data: IItem[]
   msg: string
   error: string
+}
+
+interface IUser {
+  email: string
+  hash: string
+  salt: string
 }

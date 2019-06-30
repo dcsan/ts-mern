@@ -1,5 +1,4 @@
 import { Document, model, Schema } from "mongoose"
-import { IMeal } from "../../../types"
 import { SchemaDef } from "../../types" // from mongoose package
 
 // Declare model interface

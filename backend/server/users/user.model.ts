@@ -3,19 +3,14 @@ import { sign } from "jsonwebtoken"
 import { Document, model, Schema } from "mongoose"
 import { SchemaDef } from "../../types"
 
-interface User {
-  email: string
-  hash: string
-  salt: string
-}
 // Declare the model interface
-interface UserDoc extends User, Document {
+interface UserDoc extends IUser, Document {
   setPassword(password: string): void
   isPasswordValid(password: string): boolean
   generateJwt(): { token: string; expiry: Date }
 }
 
-const userSchemaDef: SchemaDef<User> = {
+const userSchemaDef: SchemaDef<IUser> = {
   email: {
     type: String,
     // Important! We want users to be unique

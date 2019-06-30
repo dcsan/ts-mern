@@ -12,8 +12,10 @@ class Logger {
   }
 
   public error(...args: any) {
-    console.log(chalk.red("--- ERROR ----"))
+    // TODO - send to loggly or other logging service
+    console.log(chalk.red("\n--- ERROR ----"))
     console.log(chalk.red(this.whereFrom(), ...args))
+    console.log(chalk.red("\n"))
   }
 
   public info(...args: any) {
