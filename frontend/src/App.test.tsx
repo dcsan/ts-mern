@@ -2,7 +2,7 @@ import axios from "axios"
 import MockAdapter from "axios-mock-adapter"
 import { shallow } from "enzyme"
 import * as React from "react"
-import App, { AppState } from "./App"
+import App from "./App"
 
 let mock: MockAdapter
 const mockItemsResponse = [{ name: "item1", calories: 100 }]

@@ -3,7 +3,7 @@ import React from "react"
 import "./App.css"
 import { isSessionValid, setSession, clearSession, getAuthHeaders } from "./session"
 import Button from "@material-ui/core/Button"
-import { IItem, AppState } from "../../types"
+// import { IItem, AppState } from "../../types"
 // import { App } from "../../types"
 import Grid from "@material-ui/core/Grid"
 

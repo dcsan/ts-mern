@@ -136,9 +136,10 @@ http://localhost:60010/api/meals/ext
 There are types in the top level of the app in types/index.ts
 This means they can be shared between client and server.
 
-This is actually a package and there are links in the client to use it:
+This is actually a package and there are links in the client and server to use it so there is no need to import into any files. Neat!
 
     "@types/app-shared-types": "link:../types",
+
 
 ----
 

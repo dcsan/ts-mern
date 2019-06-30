@@ -16,7 +16,7 @@ import Typography from "@material-ui/core/Typography"
 import IconButton from "@material-ui/core/IconButton"
 import MenuIcon from "@material-ui/icons/Menu"
 
-import { AppState } from "../../../../types"
+// import { AppState } from "../../../../types"
 
 const MenuItems = ['Home', 'Data', 'Chat', 'Import']
 const AppName = 'TS MERN'
