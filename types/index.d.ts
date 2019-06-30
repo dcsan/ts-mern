@@ -33,3 +33,7 @@ interface IUser {
   hash: string
   salt: string
 }
+
+interface SideMenuProps {
+  handleLogout: any
+}

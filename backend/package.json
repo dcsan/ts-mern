@@ -6,7 +6,7 @@
     "start": "webpack --watch",
     "build": "webpack --config webpack.config.js",
     "lint": "tslint --fix -c ../tslint.json -p ./tsconfig.json",
-    "test": "jest --coverage --colors",
+    "test": "jest --colors",
     "test:watch": "jest --colors --watchAll",
     "coverage": "jest --coverage --colors --watchAll"
   },

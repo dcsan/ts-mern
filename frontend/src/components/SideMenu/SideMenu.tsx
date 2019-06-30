@@ -24,9 +24,6 @@ const AppName = 'TS MERN'
 type DrawerSide = 'top' | 'left' | 'bottom' | 'right'
 // const classes = useStyles()
 
-interface SideMenuProps {
-  handleLogout: any
-}
 
 class SideMenu extends React.Component<SideMenuProps, {} > {
 
