@@ -6,4 +6,4 @@ services:
 env:
   - AUTH_SHARED_SECRET=auth-shared-secret travis=true
 script:
-  - cd stack/backend && yarn test
+  - cd stack/backend && yarn && yarn test
