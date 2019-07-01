@@ -23,7 +23,12 @@ Features:
 
 # Quick Start
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/3-V5hREoe04" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+intro video
+https://youtu.be/3-V5hREoe04
+
+adding a property
+https://youtu.be/Z_tmYFlrPnI
+
 
 ## running the app
 
