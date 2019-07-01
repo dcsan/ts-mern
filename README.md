@@ -20,22 +20,44 @@ Features:
 - [Material-UI](https://material-ui.com/getting-started/usage/)
 - [React Router Dom](https://www.npmjs.com/package/react-router-dom)
 
-## login and auth
-![Login page](https://user-images.githubusercontent.com/514002/60385800-812c4200-9a85-11e9-9bee-7128ca6200c6.png)
-
-## seed data
-![Sample data](https://user-images.githubusercontent.com/514002/60385782-580bb180-9a85-11e9-8143-f4ffba04e5a6.png)
-
-A typescript file contains some seed data in [backend/data/testData.ts](backend/data/testData.ts)
-This will get reloaded at startup, and there's a button in the UI to force reload too
-
 
 # Quick Start
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3-V5hREoe04" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## running the app
+
+    cd stack
+    cp .env.example .env  # just copy the example you can configure below
+
+    cd stack
+    yarn install
+    yarn start
+
+
+Frontend: http://localhost:5555/
+Backend:  http://localhost:5555/60005
+
+This will start client with webpack proxy,
+and server apps using [concurrently](https://www.npmjs.com/package/concurrently)
+
+ctrl-C to stop
+
+OR you can start client and server separately, using two separate console windows.
+
+    cd frontend; yarn start
+    cd backend; yarn start
+
+# Details
+
 ## env config
 Add a .env file in your `backend/.env` with app configuration and environment variables
+there's an example [backend/.env.example](backend/.env.example)
 
-See the [backend/.env.example](backend/.env.example)
+so
+
+    cd stack
+    cp .env.example .env
 
 This will be .gitignore'd so you can put passwords, dbname etc in here
 Change the variables for security before deploying to production
@@ -49,48 +71,41 @@ Change the variables for security before deploying to production
 notes:
 - mongoDB database name is last part of the URI, eg `tsmerndemo`
 - SUPERUSER/SUPERPASS is the login for the first user
-- PORT is where the server /api runs
-If you change the PORT here you also need to change it in [frontend/package.json]
-That is the port that the webpack proxy is connecting to the backend server on.
+- PORT is where the server /api runs [see ports](#ports)
 
-    "proxy": "http://localhost:60010",
-
-
-## running the app
-in top level
-
-    yarn start
-
-client is now running on http://localhost:5555/
-
-this will start client with webpack proxy, and server apps using [concurrently](https://www.npmjs.com/package/concurrently)
-
-ctrl-C to stop
-
-OR you can start client and server separately, using two separate console windows.
-
-    cd frontend; yarn start
-    cd backend; yarn start
 
 ## ports
-the client web proxy needs to match the port set in the backend .env file
+The client web proxy needs to match the port set in the backend .env file
 you can change the proxy target port in [frontend/package.json](frontend/package.json)
 
-    "proxy": "http://localhost:60010"
+    "proxy": "http://localhost:60005"
 
-and the port the webpack server is accessible from
+and the port the webpack runner is accessible from for development:
 
     "start": "PORT=5555 react-scripts start"
 
 and the server port in [backend/.env](backend/.env)
 
-# Details
+
+## login and auth
+![Login page](https://user-images.githubusercontent.com/514002/60385800-812c4200-9a85-11e9-9bee-7128ca6200c6.png)
+
+## seed data
+![Sample data](https://user-images.githubusercontent.com/514002/60385782-580bb180-9a85-11e9-8143-f4ffba04e5a6.png)
+
+A typescript file contains some seed data in [backend/data/testData.ts](backend/data/testData.ts)
+This will get reloaded at startup, and there's a button in the UI to force reload too
 
 ## mongoose
 Using [Mongoose](https://mongoosejs.com) as the manager for MongoDB.
 You need to create schemas for each model eg like
 [backend/server/items/item.model.ts](backend/server/items/item.model.ts)
 And also an interface to address that model in [types/index.d.ts](types/index.d.ts)
+
+A video of me like an idiot adding a property to one of the models and also checking the travis CI
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Z_tmYFlrPnI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 ## tslint
 I made some tslint changes to my style
