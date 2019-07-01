@@ -52,7 +52,7 @@ OR you can start client and server separately, using two separate console window
 
 ## env config
 Add a .env file in your `backend/.env` with app configuration and environment variables
-there's an example [backend/.env.example](backend/.env.example)
+there's an example [stack/backend/.env.example](stack/backend/.env.example)
 
 so
 
@@ -76,7 +76,7 @@ notes:
 
 ## ports
 The client web proxy needs to match the port set in the backend .env file
-you can change the proxy target port in [frontend/package.json](frontend/package.json)
+you can change the proxy target port in [frontend/package.json](stack/frontend/package.json)
 
     "proxy": "http://localhost:60005"
 
@@ -84,7 +84,7 @@ and the port the webpack runner is accessible from for development:
 
     "start": "PORT=5555 react-scripts start"
 
-and the server port in [backend/.env](backend/.env)
+and the server port in [backend/.env](stack/backend/.env)
 
 
 ## login and auth
@@ -141,7 +141,7 @@ https://travis-ci.com/dcsan/ts-mern/builds
 
 
 ## client tests
-Look at [frontend/src/App.test.tsx](frontend/src/App.test.tsx)
+Look at [frontend/src/App.test.tsx](stack/frontend/src/App.test.tsx)
 
 Tests are using enzyme selectors, eg to fake clicking a button with id `#fetchDataButton`
 
